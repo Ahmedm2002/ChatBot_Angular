@@ -1,11 +1,15 @@
-<app-header />
-<div class="grid grid-cols-1 md:[grid-template-columns:20%_80%] h-dvh">
-  <section class="hidden md:block">
-    <app-chat />
-  </section>
-  <section class="w-full md:w-80%">
-    <app-user-input />
-  </section>
-</div>
+<div class="h-svh flex flex-col">
+  <app-header />
+  <div class="grid grid-cols-1 md:[grid-template-columns:15%_85%] h-svh">
+    <section
+      class="hidden md:block bg-[#FFFFF] border-r-2 border-gray-200 overflow-hidden"
+    >
+      <app-all-chats />
+    </section>
+    <section class="w-full md:w-80%">
+      <app-chat-section />
+    </section>
+  </div>
 
-<router-outlet />
+  <router-outlet />
+</div>

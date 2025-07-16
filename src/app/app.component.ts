@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './Components/header/header.component';
-import { ChatComponent } from './Components/chat/chat.component';
-import { UserInputComponent } from './Components/user-input/user-input.component';
+import { AllChatsComponent } from './Components/all-chats/all-chats.component';
+import { ChatSectionComponent } from './Components/chat-section/chat-section.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, ChatComponent, UserInputComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    AllChatsComponent,
+    ChatSectionComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
