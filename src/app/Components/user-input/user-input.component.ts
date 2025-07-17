@@ -13,7 +13,6 @@ export class UserInputComponent {
   @Output() message = new EventEmitter<string>();
 
   sendMessage() {
-    console.log(this.message);
     if (this.userMessage.length === 0) return;
     this.message.emit(this.userMessage);
     this.userMessage = '';
