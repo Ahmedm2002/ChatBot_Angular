@@ -1,11 +1,11 @@
 <div class="h-full flex flex-col overflow-hidden">
   <!-- User Chat section -->
-  <section class="flex-1 p-4 overflow-y-auto scroll-smooth" #chatSection>
+  <section class="flex-1 p-2 md:p-4 overflow-y-auto scroll-smooth" #chatSection>
     <div *ngFor="let message of chat">
       @if(message.user){
       <div class="flex justify-end mb-2">
         <div
-          class="bg-blue-500 text-white p-3 rounded-2xl w-fit mr-8 max-w-[60%]"
+          class="bg-blue-500 text-white p-3 rounded-2xl w-fit mr-2 md:mr-8 max-w-[70%]"
         >
           {{ message.user }}
         </div>
@@ -13,7 +13,7 @@
       } @if(message.bot){
       <div class="flex justify-start mb-2">
         <div
-          class="bg-gray-300 text-black p-3 ml-8 rounded-2xl w-fit max-w-[60%]"
+          class="bg-gray-300 text-black p-3 ml-2 md:ml-8 rounded-2xl w-fit max-w-[70%]"
         >
           {{ message.bot }}
         </div>
