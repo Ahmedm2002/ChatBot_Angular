@@ -1,15 +1,16 @@
-<div class="h-svh flex flex-col">
+<div class="h-screen flex flex-col">
   <app-header />
-  <div class="grid grid-cols-1 md:[grid-template-columns:15%_85%] h-svh">
-    <section
-      class="hidden md:block bg-[#FFFFF] border-r-2 border-gray-200 overflow-hidden"
-    >
+  <div
+    class="grid grid-cols-1 lg:[grid-template-columns:15%_85%] flex-1 overflow-hidden"
+  >
+    <!-- sidebar -->
+    <section class="hidden lg:block bg-white border-r-2 border-gray-200">
       <app-all-chats />
     </section>
-    <section class="w-full md:w-80%">
-      <app-chat-section />
-    </section>
-  </div>
 
-  <router-outlet />
+    <!-- main chat -->
+    <main class="w-full h-full">
+      <app-chat-section />
+    </main>
+  </div>
 </div>

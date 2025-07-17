@@ -1,9 +1,29 @@
-<div class="h-full flex flex-col justify-between">
-  <section class="h-full md:p-4 p-1">
-    <p>chat-section works!</p>
+<div class="h-full flex flex-col">
+  <!-- User Chat section -->
+  <section class="flex-1 p-4 mb-32">
+    <div *ngFor="let message of chat">
+      @if(message.user){
+      <div class="flex justify-end mb-2">
+        <div
+          class="bg-blue-500 text-white p-3 rounded-2xl w-fit mr-8 max-w-[60%]"
+        >
+          {{ message.user }}
+        </div>
+      </div>
+      } @if(message.bot){
+      <div class="flex justify-start mb-2">
+        <div
+          class="bg-gray-300 text-black p-3 ml-8 rounded-2xl w-fit max-w-[60%]"
+        >
+          {{ message.bot }}
+        </div>
+      </div>
+      }
+    </div>
   </section>
 
-  <section>
-    <app-user-input />
+  <!-- Input section  -->
+  <section class="sticky bottom-0 p-2 z-50">
+    <app-user-input (message)="receiveMessage($event)" />
   </section>
 </div>

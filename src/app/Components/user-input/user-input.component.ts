@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,4 +8,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css',
 })
-export class UserInputComponent {}
+export class UserInputComponent {
+  userMessage: string = '';
+  @Output() message = new EventEmitter<string>();
+
+  sendMessage() {
+    console.log(this.message);
+    if (this.userMessage.length === 0) return;
+    this.message.emit(this.userMessage);
+    this.userMessage = '';
+  }
+
+  enterPressed() {
+    this.sendMessage();
+  }
+}
