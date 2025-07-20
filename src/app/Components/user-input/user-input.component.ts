@@ -20,6 +20,8 @@ export class UserInputComponent {
   }
 
   enterPressed() {
+    if (this.userMessage.length === 0 || this.isInputDisabled) return;
+
     this.sendMessage();
   }
 }

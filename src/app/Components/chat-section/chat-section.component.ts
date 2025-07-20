@@ -37,8 +37,7 @@ export class ChatSectionComponent {
 
         container.scrollTop = container.scrollHeight;
       });
+      this.disableUserInput = false;
     });
-
-    this.disableUserInput = false;
   }
 }
