@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class UserInputComponent {
   userMessage: string = '';
   @Output() message = new EventEmitter<string>();
+  @Input() isInputDisabled!: boolean;
 
   sendMessage() {
     if (this.userMessage.length === 0) return;

@@ -1,26 +1,44 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { UserInputComponent } from '../user-input/user-input.component';
 import { CommonModule } from '@angular/common';
+import { ChatService } from '../../Core/Services/chat.service';
+import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
   selector: 'app-chat-section',
-  imports: [UserInputComponent, CommonModule],
+  imports: [UserInputComponent, CommonModule, MarkdownModule],
   templateUrl: './chat-section.component.html',
   styleUrl: './chat-section.component.css',
 })
 export class ChatSectionComponent {
+  chatServ = inject(ChatService);
+  disableUserInput: boolean = false;
+
   @ViewChild('chatSection') chatContainer!: ElementRef;
+
   chat: any = [];
   receiveMessage(message: string) {
-    this.chat.push({
-      user: message,
-      bot: '<div class="h-screen flex flex-col"> <app-header /> <div class="grid grid-cols-1 lg:[grid-template-columns:15%_85%] flex-1 overflow-hidden" > <section class="hidden lg:block bg-white border-r-2 border-gray-200"> <app-all-chats /> </section> <main class="w-full h-full overflow-hidden"> <app-chat-section /> </main> </div> </div>',
-    });
+    this.chat.push({ user: message });
+    this.disableUserInput = true;
 
     setTimeout(() => {
       const container = this.chatContainer.nativeElement;
 
       container.scrollTop = container.scrollHeight;
     });
+
+    this.chatServ.userMessage(message).subscribe((res: any) => {
+      this.chat[this.chat.length - 1] = {
+        ...this.chat[this.chat.length - 1],
+        bot: res.botReply,
+      };
+      setTimeout(() => {
+        const container = this.chatContainer.nativeElement;
+
+        container.scrollTop = container.scrollHeight;
+      });
+    });
+
+    this.disableUserInput = false;
   }
 }

@@ -15,7 +15,7 @@
         <div
           class="bg-gray-300 text-black p-3 ml-2 md:ml-8 rounded-2xl w-fit max-w-[70%]"
         >
-          {{ message.bot }}
+          <markdown [data]="message.bot"> </markdown>
         </div>
       </div>
       }
@@ -24,6 +24,9 @@
 
   <!-- Input section  -->
   <section class="sticky bottom-0 p-2 z-50">
-    <app-user-input (message)="receiveMessage($event)" />
+    <app-user-input
+      (message)="receiveMessage($event)"
+      [isInputDisabled]="disableUserInput"
+    />
   </section>
 </div>
